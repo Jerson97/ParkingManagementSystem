@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingManagementSystem.Application", "ParkingManagementSystem.Application\ParkingManagementSystem.Application.csproj", "{565102D0-46DE-47BE-B3A5-529F30706083}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingManagementSystem.Domain", "ParkingManagementSystem.Domain\ParkingManagementSystem.Domain.csproj", "{F051F84B-55A7-411E-AD13-317B6DB9001D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingManagementSystem.Infrastructure", "ParkingManagementSystem.Infrastructure\ParkingManagementSystem.Infrastructure.csproj", "{B0217306-5093-4977-84DB-473F432FD33A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingManagementSystem.WebApi", "ParkingManagementSystem.WebApi\ParkingManagementSystem.WebApi.csproj", "{FDA01EA7-B595-40B4-B8C2-FACFEA770E78}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{565102D0-46DE-47BE-B3A5-529F30706083}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{565102D0-46DE-47BE-B3A5-529F30706083}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{565102D0-46DE-47BE-B3A5-529F30706083}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{565102D0-46DE-47BE-B3A5-529F30706083}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F051F84B-55A7-411E-AD13-317B6DB9001D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F051F84B-55A7-411E-AD13-317B6DB9001D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F051F84B-55A7-411E-AD13-317B6DB9001D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F051F84B-55A7-411E-AD13-317B6DB9001D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0217306-5093-4977-84DB-473F432FD33A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0217306-5093-4977-84DB-473F432FD33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0217306-5093-4977-84DB-473F432FD33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0217306-5093-4977-84DB-473F432FD33A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDA01EA7-B595-40B4-B8C2-FACFEA770E78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDA01EA7-B595-40B4-B8C2-FACFEA770E78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDA01EA7-B595-40B4-B8C2-FACFEA770E78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDA01EA7-B595-40B4-B8C2-FACFEA770E78}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
