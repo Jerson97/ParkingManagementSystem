@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CleanTemplate.WebApi.Controllers
+namespace ParkingManagementSystem.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

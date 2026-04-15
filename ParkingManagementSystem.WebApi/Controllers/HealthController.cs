@@ -1,7 +1,7 @@
-﻿using CleanTemplate.Application.Features.Health.Queries;
+﻿using ParkingManagementSystem.Application.Features.Health.Queries;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CleanTemplate.WebApi.Controllers
+namespace ParkingManagementSystem.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

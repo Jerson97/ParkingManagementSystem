@@ -1,7 +1,7 @@
-﻿using CleanTemplate.Application.Common.Results;
+﻿using ParkingManagementSystem.Application.Common.Results;
 using MediatR;
 
-namespace CleanTemplate.Application.Features.Health.Queries
+namespace ParkingManagementSystem.Application.Features.Health.Queries
 {
     public class PingQuery : IRequest<MessageResult<string>>
     {

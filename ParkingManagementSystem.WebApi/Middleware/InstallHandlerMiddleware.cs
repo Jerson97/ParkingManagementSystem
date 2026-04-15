@@ -1,6 +1,6 @@
-﻿using CleanTemplate.WebApi.Middleware.ErrorMiddlewares;
+﻿using ParkingManagementSystem.WebApi.Middleware.ErrorMiddlewares;
 
-namespace CleanTemplate.WebApi.Midleware
+namespace ParkingManagementSystem.WebApi.Midleware
 {
     public static class InstallHandlerMiddleware
     {

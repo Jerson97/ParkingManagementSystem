@@ -1,6 +1,6 @@
 ﻿using System.Net;
-using CleanTemplate.Application.Common.Exceptions;
-using CleanTemplate.Application.Common.Results;
+using ParkingManagementSystem.Application.Common.Exceptions;
+using ParkingManagementSystem.Application.Common.Results;
 
 namespace GestionTarea.Application.Common.Extensions
 {

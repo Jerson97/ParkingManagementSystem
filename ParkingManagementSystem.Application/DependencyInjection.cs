@@ -1,14 +1,14 @@
 ﻿using System.Reflection;
-using CleanTemplate.Application.Behaviors;
+using ParkingManagementSystem.Application.Behaviors;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanTemplate.Application
+namespace ParkingManagementSystem.Application
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddMediatR(cfg =>
             {

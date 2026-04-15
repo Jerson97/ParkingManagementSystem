@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 
-namespace CleanTemplate.WebApi.Extensions
+namespace ParkingManagementSystem.WebApi.Extensions
 {
     public static class SwaggerExtensions
     {

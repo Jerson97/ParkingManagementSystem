@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace CleanTemplate.Application.Behaviors
+namespace ParkingManagementSystem.Application.Behaviors
 {
     public class UnhandledExceptionBehaviors<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
     {

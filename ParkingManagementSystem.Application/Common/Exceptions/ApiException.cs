@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Runtime.Serialization;
 
-namespace CleanTemplate.Application.Common.Exceptions
+namespace ParkingManagementSystem.Application.Common.Exceptions
 {
     public class ApiException : Exception
     {

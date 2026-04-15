@@ -1,4 +1,4 @@
-﻿namespace CleanTemplate.Application.Common.Results
+﻿namespace ParkingManagementSystem.Application.Common.Results
 {
     public class MessageResult<T>
     {

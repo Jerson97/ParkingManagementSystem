@@ -1,8 +1,8 @@
-﻿using CleanTemplate.Application.Common.Results;
+﻿using ParkingManagementSystem.Application.Common.Results;
 using FluentValidation;
 using MediatR;
 
-namespace CleanTemplate.Application.Behaviors
+namespace ParkingManagementSystem.Application.Behaviors
 {
     public class ValidationBehavior<TRequest, TResponse>: IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
     {

@@ -1,14 +1,13 @@
-using CleanTemplate.Application;
-using CleanTemplate.Infrastructure;
-using CleanTemplate.WebApi.Extensions;
-using CleanTemplate.WebApi.Middleware.ErrorMiddlewares;
+using ParkingManagementSystem.Application;
+using ParkingManagementSystem.Infrastructure;
+using ParkingManagementSystem.WebApi.Extensions;
+using ParkingManagementSystem.WebApi.Middleware.ErrorMiddlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //Configuracion de Persistence
-builder.Services.AddPersistence(builder.Configuration);
-builder.Services.AddApplication(builder.Configuration);
-
+builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddApplicationServices(builder.Configuration);
 // Add services to the container.
 
 builder.Services.AddControllers();

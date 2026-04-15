@@ -1,9 +1,9 @@
 ﻿using System.Net;
 using System.Text.Json;
-using CleanTemplate.Application.Common.Exceptions;
-using CleanTemplate.Application.Common.Results;
+using ParkingManagementSystem.Application.Common.Exceptions;
+using ParkingManagementSystem.Application.Common.Results;
 
-namespace CleanTemplate.WebApi.Middleware.ErrorMiddlewares
+namespace ParkingManagementSystem.WebApi.Middleware.ErrorMiddlewares
 {
     public class ErrorHandlerMiddleware
     {
