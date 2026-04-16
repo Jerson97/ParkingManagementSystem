@@ -14,8 +14,6 @@
         }
 
         public static MessageResult<T> Of(string message, T data, int? code = 1) => new MessageResult<T>(message, data, code.Value);
-
-        public static MessageResult<T> Fail(string errorMessage)
-        => new MessageResult<T>(errorMessage, default!, 0);
+        public static MessageResult<T> Fail(string errorMessage) => new MessageResult<T>(errorMessage, default!, 0);
     }
 }

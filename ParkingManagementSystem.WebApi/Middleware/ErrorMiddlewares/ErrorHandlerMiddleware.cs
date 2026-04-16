@@ -57,7 +57,7 @@ namespace ParkingManagementSystem.WebApi.Middleware.ErrorMiddlewares
 
             await context.Response.WriteAsync(
                 JsonSerializer.Serialize(
-                    MessageResult<object>.Of(message, ex.Data, customResponse)
+                    MessageResult<object>.Of(message, null!, customResponse)
                 )
             );
         }

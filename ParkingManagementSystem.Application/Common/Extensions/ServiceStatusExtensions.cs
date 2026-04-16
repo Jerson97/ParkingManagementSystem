@@ -2,7 +2,7 @@
 using ParkingManagementSystem.Application.Common.Exceptions;
 using ParkingManagementSystem.Application.Common.Results;
 
-namespace GestionTarea.Application.Common.Extensions
+namespace ParkingManagementSystem.Application.Common.Extensions
 {
     public static class ServiceStatusExtensions
     {

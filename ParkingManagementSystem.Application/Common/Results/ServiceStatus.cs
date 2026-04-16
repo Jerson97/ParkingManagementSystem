@@ -4,7 +4,6 @@
     {
         Success,
         Created = 201,
-        FailedValidation = 400,
         Forbidden = 403,
         InternalError = 500,
         Unauthorized = 401,
