@@ -28,5 +28,19 @@ namespace ParkingManagementSystem.Infrastructure.Persistence.Repositories
                     p.Status == ParkingEntryStatus.Inside,
                     cancellationToken);
         }
+
+        public async Task<ParkingEntry?> GetByTicketNumberAsync(string ticketNumber, CancellationToken cancellationToken)
+        {
+            return await _context.ParkingEntries
+                .Include(pe => pe.Vehicle)
+                .Include(p => p.RateType)
+                .Include(p => p.ParkingSpace)
+                .FirstOrDefaultAsync(p => p.TicketNumber == ticketNumber, cancellationToken);
+        }
+
+        public void Update(ParkingEntry parkingEntry)
+        {
+            _context.ParkingEntries.Update(parkingEntry);
+        }
     }
 }

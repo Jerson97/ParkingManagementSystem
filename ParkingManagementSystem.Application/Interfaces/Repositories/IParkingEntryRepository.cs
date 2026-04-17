@@ -6,5 +6,7 @@ namespace ParkingManagementSystem.Application.Interfaces.Repositories
     {
         Task AddAsync(ParkingEntry parkingEntry, CancellationToken cancellationToken);
         Task<bool> ExistsActiveEntryByLicensePlateAsync(string licensePlate, CancellationToken cancellationToken);
+        Task<ParkingEntry?> GetByTicketNumberAsync(string ticketNumber, CancellationToken cancellationToken);
+        void Update(ParkingEntry parkingEntry);
     }
 }
