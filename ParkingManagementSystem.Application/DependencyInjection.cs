@@ -3,6 +3,7 @@ using ParkingManagementSystem.Application.Behaviors;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using FluentValidation;
 
 namespace ParkingManagementSystem.Application
 {
@@ -14,6 +15,8 @@ namespace ParkingManagementSystem.Application
             {
                 cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
             });
+
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviors<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
