@@ -18,6 +18,7 @@ namespace ParkingManagementSystem.Infrastructure
             services.AddScoped<IParkingSpaceRepository, ParkingSpaceRepository>();
             services.AddScoped<IParkingEntryRepository, ParkingEntryRepository>();
             services.AddScoped<IRateTypeRepository, RateTypeRepository>();
+            services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;

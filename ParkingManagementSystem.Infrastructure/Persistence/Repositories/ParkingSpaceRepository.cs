@@ -20,6 +20,12 @@ namespace ParkingManagementSystem.Infrastructure.Persistence.Repositories
                 .FirstOrDefaultAsync(ps => ps.Status == ParkingSpaceStatus.Available, cancellationToken);
         }
 
+        public async Task<ParkingSpace?> GetByIdAsync(int id, CancellationToken cancellationToken)
+        {
+            return await _context.ParkingSpaces
+                .FirstOrDefaultAsync(ps => ps.Id == id, cancellationToken);
+        }
+
         public void Update(ParkingSpace parkingSpace)
         {
             _context.ParkingSpaces.Update(parkingSpace);

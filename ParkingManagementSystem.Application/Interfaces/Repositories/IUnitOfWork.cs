@@ -8,5 +8,6 @@
         IRateTypeRepository RateTypes { get; }
         IParkingSpaceRepository ParkingSpaces { get; }
         IParkingEntryRepository ParkingEntries { get; }
+        ISubscriptionRepository Subscriptions { get; }
     }
 }
