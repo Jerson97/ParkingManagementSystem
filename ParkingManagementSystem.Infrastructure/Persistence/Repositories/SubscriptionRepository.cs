@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ParkingManagementSystem.Application.Interfaces.Repositories;
 using ParkingManagementSystem.Domain.Entities;
+using ParkingManagementSystem.Domain.Enums;
 
 namespace ParkingManagementSystem.Infrastructure.Persistence.Repositories
 {
@@ -29,6 +30,25 @@ namespace ParkingManagementSystem.Infrastructure.Persistence.Repositories
             return await _context.Subscriptions
                 .Include(s => s.Vehicle)
                 .AnyAsync(s => s.Vehicle.LicensePlate == licensePlate, cancellationToken);
+        }
+
+        public async Task<List<Subscription>> GetAllAsync(CancellationToken cancellationToken)
+        {
+            return await _context.Subscriptions
+                .Include(s => s.Vehicle)
+                .Include(s => s.RateType)
+                .Include(s => s.ParkingSpace)
+                .OrderBy(s => s.CustomerName)
+                .ToListAsync(cancellationToken);
+        }
+
+        public async Task<List<Subscription>> GetExpiredSubscriptionsAsync(DateTime currentDate, CancellationToken cancellationToken)
+        {
+            return await _context.Subscriptions
+                .Include(s => s.Vehicle)
+                .Include(s => s.ParkingSpace)
+                .Where(s => s.Status == SubscriptionStatus.Active && s.EndDate < currentDate)
+                .ToListAsync(cancellationToken);
         }
     }
 }
