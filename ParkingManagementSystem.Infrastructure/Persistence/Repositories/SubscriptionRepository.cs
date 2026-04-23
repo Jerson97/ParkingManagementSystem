@@ -50,5 +50,18 @@ namespace ParkingManagementSystem.Infrastructure.Persistence.Repositories
                 .Where(s => s.Status == SubscriptionStatus.Active && s.EndDate < currentDate)
                 .ToListAsync(cancellationToken);
         }
+
+        public async Task<Subscription?> GetByIdAsync(int id, CancellationToken cancellationToken)
+        {
+            return await _context.Subscriptions
+                .Include(s => s.RateType)
+                .Include(s => s.ParkingSpace)
+                .FirstOrDefaultAsync(s => s.Id == id, cancellationToken);
+        }
+
+        public void Update(Subscription subscription)
+        {
+            _context.Subscriptions.Update(subscription);
+        }
     }
 }

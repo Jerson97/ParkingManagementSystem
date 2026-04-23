@@ -3,6 +3,7 @@ using ParkingManagementSystem.Application.Common.Results;
 using ParkingManagementSystem.Application.DTOs;
 using ParkingManagementSystem.Application.Features.Subscriptions.Commands.CreateSubscription;
 using ParkingManagementSystem.Application.Features.Subscriptions.Commands.ProcessExpiredSubscriptions;
+using ParkingManagementSystem.Application.Features.Subscriptions.Commands.RenewSubscription;
 using ParkingManagementSystem.Application.Features.Subscriptions.Queries.GetSubscriptions;
 
 namespace ParkingManagementSystem.WebApi.Controllers
@@ -29,6 +30,13 @@ namespace ParkingManagementSystem.WebApi.Controllers
         public async Task<ActionResult<MessageResult<List<ProcessExpiredSubscriptionsResponseDto>>>> ProcessExpired()
         {
             var result = await Mediator.Send(new ProcessExpiredSubscriptionsCommand());
+            return Ok(result);
+        }
+
+        [HttpPut("renew")]
+        public async Task<ActionResult<MessageResult<int>>> Renew([FromBody] RenewSubscriptionCommand command)
+        {
+            var result = await Mediator.Send(command);
             return Ok(result);
         }
     }

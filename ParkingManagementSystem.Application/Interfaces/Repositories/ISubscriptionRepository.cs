@@ -9,5 +9,7 @@ namespace ParkingManagementSystem.Application.Interfaces.Repositories
         Task<bool> ExistsByLicensePlateAsync(string licensePlate, CancellationToken cancellationToken);
         Task<List<Subscription>> GetAllAsync(CancellationToken cancellationToken);
         Task<List<Subscription>> GetExpiredSubscriptionsAsync(DateTime currentDate, CancellationToken cancellationToken);
+        Task<Subscription?> GetByIdAsync(int id, CancellationToken cancellationToken);
+        void Update(Subscription subscription);
     }
 }
