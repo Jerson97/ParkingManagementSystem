@@ -6,6 +6,7 @@ namespace ParkingManagementSystem.Application.Interfaces.Repositories
     {
         Task<ParkingSpace?> GetAvailableSpaceAsync(CancellationToken cancellationToken);
         Task<ParkingSpace?> GetByIdAsync(int id, CancellationToken cancellationToken);
+        Task<List<ParkingSpace>> GetAllAsync(CancellationToken cancellationToken);
         void Update(ParkingSpace parkingSpace);
     }
 }

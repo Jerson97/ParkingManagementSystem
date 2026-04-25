@@ -30,5 +30,16 @@ namespace ParkingManagementSystem.Infrastructure.Persistence.Repositories
         {
             _context.ParkingSpaces.Update(parkingSpace);
         }
+
+        public async Task<List<ParkingSpace>> GetAllAsync(CancellationToken cancellationToken)
+        {
+            return await _context.ParkingSpaces
+                .Include(ps => ps.Subscription)
+                    .ThenInclude(s => s.Vehicle)
+                .Include(ps => ps.ParkingEntries)
+                    .ThenInclude(pe => pe.Vehicle)
+                .OrderBy(ps => ps.SpaceNumber)
+                .ToListAsync(cancellationToken);
+        }
     }
 }
