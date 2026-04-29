@@ -27,7 +27,8 @@ namespace ParkingManagementSystem.Application.Features.RateType.Queries.GetRateT
                 Id = rt.Id,
                 Name = rt.Name,
                 Price = rt.Price,
-                IsHourly = rt.IsHourly
+                IsHourly = rt.IsHourly,
+                IsActive = rt.IsActive
             }).ToList();
 
             return MessageResult<List<GetRateTypesResponseDto>>.Of("Consulta realizada correctamente.", response);

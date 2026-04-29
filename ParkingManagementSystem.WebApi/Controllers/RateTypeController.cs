@@ -2,6 +2,7 @@
 using ParkingManagementSystem.Application.Common.Results;
 using ParkingManagementSystem.Application.DTOs;
 using ParkingManagementSystem.Application.Features.RateType.Commands.CreateRateType;
+using ParkingManagementSystem.Application.Features.RateType.Commands.DeleteRateType;
 using ParkingManagementSystem.Application.Features.RateType.Commands.UpdateRateType;
 using ParkingManagementSystem.Application.Features.RateType.Queries.GetRateType;
 
@@ -31,6 +32,13 @@ namespace ParkingManagementSystem.WebApi.Controllers
             command.Id = id;
 
             var result = await Mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<MessageResult<int>>> Delete(int id)
+        {
+            var result = await Mediator.Send(new DeleteRateTypeCommand { Id = id });
             return Ok(result);
         }
     }

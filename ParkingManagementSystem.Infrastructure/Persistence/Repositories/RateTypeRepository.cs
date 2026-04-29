@@ -22,6 +22,7 @@ namespace ParkingManagementSystem.Infrastructure.Persistence.Repositories
         public async Task<List<RateType>> GetAllAsync(CancellationToken cancellationToken)
         {
             return await _context.RateTypes
+                .Where(rt => rt.IsActive)
                 .OrderBy(rt => rt.Name)
                 .ToListAsync(cancellationToken);
         }

@@ -12,6 +12,9 @@ namespace ParkingManagementSystem.Infrastructure.Persistence.Configurations
 
             builder.HasKey(rt => rt.Id);
 
+            builder.Property(rt => rt.IsActive)
+                .IsRequired();
+
             builder.Property(rt => rt.Name)
                 .IsRequired()
                 .HasMaxLength(50);
