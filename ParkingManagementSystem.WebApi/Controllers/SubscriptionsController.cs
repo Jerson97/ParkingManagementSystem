@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ParkingManagementSystem.Application.Common.Results;
 using ParkingManagementSystem.Application.DTOs;
+using ParkingManagementSystem.Application.Features.Subscriptions.Commands.CancelSubscription;
 using ParkingManagementSystem.Application.Features.Subscriptions.Commands.CreateSubscription;
 using ParkingManagementSystem.Application.Features.Subscriptions.Commands.ProcessExpiredSubscriptions;
 using ParkingManagementSystem.Application.Features.Subscriptions.Commands.RenewSubscription;
@@ -37,6 +38,17 @@ namespace ParkingManagementSystem.WebApi.Controllers
         public async Task<ActionResult<MessageResult<int>>> Renew([FromBody] RenewSubscriptionCommand command)
         {
             var result = await Mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpPut("{id}/cancel")]
+        public async Task<ActionResult<MessageResult<int>>> Cancel(int id)
+        {
+            var result = await Mediator.Send(new CancelSubscriptionCommand
+            {
+                Id = id
+            });
+
             return Ok(result);
         }
     }

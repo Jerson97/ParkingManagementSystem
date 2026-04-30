@@ -3,6 +3,7 @@ using ParkingManagementSystem.Application.Common.Results;
 using ParkingManagementSystem.Application.DTOs;
 using ParkingManagementSystem.Application.Features.ParkingEntries.Commands.CreateParkingEntry;
 using ParkingManagementSystem.Application.Features.ParkingEntries.Commands.RegisterVehicleExit;
+using ParkingManagementSystem.Application.Features.ParkingEntries.Queries.GetParkingEntryByTicket;
 using ParkingManagementSystem.Application.Features.ParkingEntries.Queries.GetParkingEntryHistory;
 using ParkingManagementSystem.Application.Features.ParkingEntries.Queries.GetParkingFee;
 
@@ -35,6 +36,17 @@ namespace ParkingManagementSystem.WebApi.Controllers
         public async Task<ActionResult<MessageResult<List<GetParkingEntryHistoryResponseDto>>>> GetHistory([FromQuery] GetParkingEntryHistoryQuery query)
         {
             var result = await Mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpGet("{ticketNumber}")]
+        public async Task<ActionResult<MessageResult<GetParkingEntryByTicketResponseDto>>> GetByTicket(string ticketNumber)
+        {
+            var result = await Mediator.Send(new GetParkingEntryByTicketQuery
+            {
+                TicketNumber = ticketNumber
+            });
+
             return Ok(result);
         }
 
