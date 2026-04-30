@@ -1,4 +1,5 @@
 ﻿using ParkingManagementSystem.Domain.Entities;
+using ParkingManagementSystem.Domain.Enums;
 
 namespace ParkingManagementSystem.Application.Interfaces.Repositories
 {
@@ -11,5 +12,6 @@ namespace ParkingManagementSystem.Application.Interfaces.Repositories
         Task<List<Subscription>> GetExpiredSubscriptionsAsync(DateTime currentDate, CancellationToken cancellationToken);
         Task<Subscription?> GetByIdAsync(int id, CancellationToken cancellationToken);
         void Update(Subscription subscription);
+        Task<int> CountByStatusAsync(SubscriptionStatus status, CancellationToken cancellationToken);
     }
 }

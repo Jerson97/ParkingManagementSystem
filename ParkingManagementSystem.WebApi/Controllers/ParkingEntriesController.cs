@@ -3,6 +3,7 @@ using ParkingManagementSystem.Application.Common.Results;
 using ParkingManagementSystem.Application.DTOs;
 using ParkingManagementSystem.Application.Features.ParkingEntries.Commands.CreateParkingEntry;
 using ParkingManagementSystem.Application.Features.ParkingEntries.Commands.RegisterVehicleExit;
+using ParkingManagementSystem.Application.Features.ParkingEntries.Queries.GetParkingEntryHistory;
 using ParkingManagementSystem.Application.Features.ParkingEntries.Queries.GetParkingFee;
 
 namespace ParkingManagementSystem.WebApi.Controllers
@@ -25,6 +26,13 @@ namespace ParkingManagementSystem.WebApi.Controllers
 
         [HttpPost("calculate")]
         public async Task<ActionResult<MessageResult<GetParkingFeeResponseDto>>> CalculateFee([FromBody] GetParkingFeeQuery query)
+        {
+            var result = await Mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpGet("history")]
+        public async Task<ActionResult<MessageResult<List<GetParkingEntryHistoryResponseDto>>>> GetHistory([FromQuery] GetParkingEntryHistoryQuery query)
         {
             var result = await Mediator.Send(query);
             return Ok(result);

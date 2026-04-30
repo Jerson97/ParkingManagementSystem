@@ -41,5 +41,17 @@ namespace ParkingManagementSystem.Infrastructure.Persistence.Repositories
                 .OrderBy(ps => ps.SpaceNumber)
                 .ToListAsync(cancellationToken);
         }
+
+        public async Task<int> CountAllAsync(CancellationToken cancellationToken)
+        {
+            return await _context.ParkingSpaces
+                .CountAsync(cancellationToken);
+        }
+
+        public async Task<int> CountByStatusAsync(ParkingSpaceStatus status, CancellationToken cancellationToken)
+        {
+            return await _context.ParkingSpaces
+                .CountAsync(ps => ps.Status == status, cancellationToken);
+        }
     }
 }

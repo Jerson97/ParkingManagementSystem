@@ -2,7 +2,6 @@
 using ParkingManagementSystem.Application.Common.Extensions;
 using ParkingManagementSystem.Application.Common.Results;
 using ParkingManagementSystem.Application.Interfaces.Repositories;
-using ParkingManagementSystem.Domain.Entities;
 
 namespace ParkingManagementSystem.Application.Features.RateType.Commands.CreateRateType
 {

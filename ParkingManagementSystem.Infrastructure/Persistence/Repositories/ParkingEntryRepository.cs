@@ -42,5 +42,61 @@ namespace ParkingManagementSystem.Infrastructure.Persistence.Repositories
         {
             _context.ParkingEntries.Update(parkingEntry);
         }
+
+        public async Task<decimal> GetTodayRevenueAsync(DateTime date, CancellationToken cancellationToken)
+        {
+            var startDate = date.Date;
+            var endDate = startDate.AddDays(1);
+
+            return await _context.ParkingEntries
+                .Where(pe =>
+                    pe.Status == ParkingEntryStatus.Completed &&
+                    pe.ExitTime >= startDate &&
+                    pe.ExitTime < endDate)
+                .SumAsync(pe => pe.TotalAmount ?? 0, cancellationToken);
+        }
+
+        public async Task<int> CountClosedTodayAsync(DateTime date, CancellationToken cancellationToken)
+        {
+            var startDate = date.Date;
+            var endDate = startDate.AddDays(1);
+
+            return await _context.ParkingEntries
+                .CountAsync(pe =>
+                    pe.Status == ParkingEntryStatus.Completed &&
+                    pe.ExitTime >= startDate &&
+                    pe.ExitTime < endDate,
+                    cancellationToken);
+        }
+
+        public async Task<List<ParkingEntry>> GetHistoryAsync(string? licensePlate, DateTime? from, DateTime? to, CancellationToken cancellationToken)
+        {
+            var query = _context.ParkingEntries
+                .Include(pe => pe.Vehicle)
+                .Include(pe => pe.ParkingSpace)
+                .Include(pe => pe.RateType)
+                .Where(pe => pe.Status == ParkingEntryStatus.Completed)
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(licensePlate))
+            {
+                query = query.Where(pe => pe.Vehicle.LicensePlate == licensePlate);
+            }
+
+            if (from.HasValue)
+            {
+                query = query.Where(pe => pe.ExitTime >= from.Value.Date);
+            }
+
+            if (to.HasValue)
+            {
+                var toDate = to.Value.Date.AddDays(1);
+                query = query.Where(pe => pe.ExitTime < toDate);
+            }
+
+            return await query
+                .OrderByDescending(pe => pe.ExitTime)
+                .ToListAsync(cancellationToken);
+        }
     }
 }

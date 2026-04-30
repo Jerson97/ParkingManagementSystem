@@ -63,5 +63,11 @@ namespace ParkingManagementSystem.Infrastructure.Persistence.Repositories
         {
             _context.Subscriptions.Update(subscription);
         }
+
+        public async Task<int> CountByStatusAsync(SubscriptionStatus status, CancellationToken cancellationToken)
+        {
+            return await _context.Subscriptions
+                .CountAsync(s => s.Status == status, cancellationToken);
+        }
     }
 }
