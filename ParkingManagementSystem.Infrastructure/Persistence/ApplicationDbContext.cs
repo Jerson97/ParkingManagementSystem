@@ -20,6 +20,7 @@ namespace ParkingManagementSystem.Infrastructure.Persistence
         public DbSet<ParkingSpace> ParkingSpaces { get; set; }
         public DbSet<RateType> RateTypes { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
+        public DbSet<User> Users { get; set; }
 
     }
 }

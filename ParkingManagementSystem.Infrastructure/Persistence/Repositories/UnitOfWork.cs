@@ -10,8 +10,8 @@ namespace ParkingManagementSystem.Infrastructure.Persistence.Repositories
         public IRateTypeRepository RateTypes { get; }
         public IParkingSpaceRepository ParkingSpaces { get; }
         public IParkingEntryRepository ParkingEntries { get; }
-
         public ISubscriptionRepository Subscriptions { get; }
+        public IUserRepository Users { get; }
 
         public UnitOfWork(
             ApplicationDbContext context,
@@ -19,7 +19,8 @@ namespace ParkingManagementSystem.Infrastructure.Persistence.Repositories
             IRateTypeRepository rateTypeRepository,
             IParkingSpaceRepository parkingSpaceRepository,
             IParkingEntryRepository parkingEntryRepository,
-            ISubscriptionRepository subscriptions)
+            ISubscriptionRepository subscriptions,
+            IUserRepository userRepository)
         {
             _context = context;
             Vehicles = vehicleRepository;
@@ -27,6 +28,7 @@ namespace ParkingManagementSystem.Infrastructure.Persistence.Repositories
             ParkingSpaces = parkingSpaceRepository;
             ParkingEntries = parkingEntryRepository;
             Subscriptions = subscriptions;
+            Users = userRepository;
         }
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)

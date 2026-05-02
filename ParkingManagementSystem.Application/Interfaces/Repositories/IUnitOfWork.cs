@@ -9,5 +9,6 @@
         IParkingSpaceRepository ParkingSpaces { get; }
         IParkingEntryRepository ParkingEntries { get; }
         ISubscriptionRepository Subscriptions { get; }
+        IUserRepository Users { get; }
     }
 }
