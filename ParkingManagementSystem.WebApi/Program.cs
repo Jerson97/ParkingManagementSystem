@@ -5,14 +5,29 @@ using ParkingManagementSystem.WebApi.Middleware.ErrorMiddlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Configuracion de Persistence
+// Configuracion de Persistence
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices(builder.Configuration);
-// Add services to the container.
+builder.Services.AddJwtAuthentication(builder.Configuration);
 
+// CORS para Angular en desarrollo
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularDevClient", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
+// Add services to the container.
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
 // Swagger
 builder.Services.AddSwaggerDocumentation();
 
@@ -24,11 +39,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.UseHttpsRedirection();
 
-//app.UseAuthentication();
+// CORS debe ir antes de Authentication/Authorization
+app.UseCors("AllowAngularDevClient");
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

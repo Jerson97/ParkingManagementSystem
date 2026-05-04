@@ -9,6 +9,11 @@ namespace ParkingManagementSystem.WebApi.Middleware.ErrorMiddlewares
     {
         private readonly RequestDelegate _next;
 
+        private static readonly JsonSerializerOptions JsonOptions = new()
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
+
         public ErrorHandlerMiddleware(RequestDelegate next)
         {
             _next = next;
@@ -55,10 +60,10 @@ namespace ParkingManagementSystem.WebApi.Middleware.ErrorMiddlewares
             else if (statusCode == 422)
                 customResponse = 2;
 
+            var response = MessageResult<object>.Of(message, null!, customResponse);
+
             await context.Response.WriteAsync(
-                JsonSerializer.Serialize(
-                    MessageResult<object>.Of(message, null!, customResponse)
-                )
+                JsonSerializer.Serialize(response, JsonOptions)
             );
         }
 

@@ -13,7 +13,9 @@ namespace ParkingManagementSystem.Application.Common.Extensions
                 ServiceStatus.NotFound => HttpStatusCode.NotFound,
                 ServiceStatus.BadRequest => HttpStatusCode.BadRequest,
                 ServiceStatus.Forbidden => HttpStatusCode.Forbidden,
+                ServiceStatus.Unauthorized => HttpStatusCode.Unauthorized,
                 ServiceStatus.UnprocessableEntity => HttpStatusCode.UnprocessableEntity,
+                ServiceStatus.InternalError => HttpStatusCode.InternalServerError,
                 _ => HttpStatusCode.InternalServerError
             };
 
