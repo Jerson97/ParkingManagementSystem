@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ParkingManagementSystem.Application.Common.Results;
 using ParkingManagementSystem.Application.DTOs;
 using ParkingManagementSystem.Application.Features.RateType.Commands.CreateRateType;
@@ -12,6 +13,7 @@ namespace ParkingManagementSystem.WebApi.Controllers
     [ApiController]
     public class RateTypesController : MyBaseController
     {
+        [Authorize(Roles = "Admin,Attendant")]
         [HttpGet]
         public async Task<ActionResult<MessageResult<List<GetRateTypesResponseDto>>>> GetAll()
         {
@@ -19,6 +21,7 @@ namespace ParkingManagementSystem.WebApi.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult<MessageResult<int>>> Create([FromBody] CreateRateTypeCommand command)
         {
@@ -26,6 +29,7 @@ namespace ParkingManagementSystem.WebApi.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPatch("{id}")]
         public async Task<ActionResult<MessageResult<int>>> Update(int id, [FromBody] UpdateRateTypeCommand command)
         {
@@ -35,6 +39,7 @@ namespace ParkingManagementSystem.WebApi.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<ActionResult<MessageResult<int>>> Delete(int id)
         {

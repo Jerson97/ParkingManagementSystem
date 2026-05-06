@@ -6,7 +6,7 @@ using ParkingManagementSystem.Application.Features.Dashboard.Queries;
 
 namespace ParkingManagementSystem.WebApi.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Attendant")]
     [Route("api/dashboard")]
     [ApiController]
     public class DashboardController : MyBaseController

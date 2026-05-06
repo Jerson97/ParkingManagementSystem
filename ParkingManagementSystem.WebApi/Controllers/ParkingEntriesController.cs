@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ParkingManagementSystem.Application.Common.Results;
 using ParkingManagementSystem.Application.DTOs;
 using ParkingManagementSystem.Application.Features.ParkingEntries.Commands.CreateParkingEntry;
@@ -9,6 +10,8 @@ using ParkingManagementSystem.Application.Features.ParkingEntries.Queries.GetPar
 
 namespace ParkingManagementSystem.WebApi.Controllers
 {
+    [Authorize(Roles = "Admin,Attendant")]
+    [Route("api/parkingentries")]
     public class ParkingEntriesController : MyBaseController
     {
         [HttpPost]

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ParkingManagementSystem.Application.Common.Results;
 using ParkingManagementSystem.Application.DTOs;
 using ParkingManagementSystem.Application.Features.Subscriptions.Commands.CancelSubscription;
@@ -13,6 +14,7 @@ namespace ParkingManagementSystem.WebApi.Controllers
     [ApiController]
     public class SubscriptionsController : MyBaseController
     {
+        [Authorize(Roles = "Admin,Attendant")]
         [HttpPost]
         public async Task<ActionResult<MessageResult<int>>> Create([FromBody] CreateSubscriptionCommand command)
         {
@@ -20,6 +22,7 @@ namespace ParkingManagementSystem.WebApi.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin,Attendant")]
         [HttpGet]
         public async Task<ActionResult<MessageResult<List<GetSubscriptionsResponseDto>>>> GetAll()
         {
@@ -27,6 +30,7 @@ namespace ParkingManagementSystem.WebApi.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost("process-expired")]
         public async Task<ActionResult<MessageResult<List<ProcessExpiredSubscriptionsResponseDto>>>> ProcessExpired()
         {
@@ -34,6 +38,7 @@ namespace ParkingManagementSystem.WebApi.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin,Attendant")]
         [HttpPut("renew")]
         public async Task<ActionResult<MessageResult<int>>> Renew([FromBody] RenewSubscriptionCommand command)
         {
@@ -41,6 +46,7 @@ namespace ParkingManagementSystem.WebApi.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}/cancel")]
         public async Task<ActionResult<MessageResult<int>>> Cancel(int id)
         {
