@@ -24,6 +24,8 @@ namespace ParkingManagementSystem.Application.Features.ParkingEntries.Commands.C
 
         public async Task<MessageResult<int>> Handle(CreateParkingEntryCommand request, CancellationToken cancellationToken)
         {
+            var licensePlate = request.LicensePlate.Trim().ToUpper();
+
             var rateType = await _unitOfWork.RateTypes
                 .GetByIdAsync(request.RateTypeId, cancellationToken);
 
@@ -31,19 +33,19 @@ namespace ParkingManagementSystem.Application.Features.ParkingEntries.Commands.C
                 ServiceStatus.NotFound.Throw("La tarifa no existe.");
 
             var hasActiveEntry = await _unitOfWork.ParkingEntries
-                .ExistsActiveEntryByLicensePlateAsync(request.LicensePlate, cancellationToken);
+                .ExistsActiveEntryByLicensePlateAsync(licensePlate, cancellationToken);
 
             if (hasActiveEntry)
                 ServiceStatus.BadRequest.Throw("El vehículo ya tiene un ingreso activo.");
 
             var vehicle = await _unitOfWork.Vehicles
-                .GetByLicensePlateAsync(request.LicensePlate, cancellationToken);
+                .GetByLicensePlateAsync(licensePlate, cancellationToken);
 
             if (vehicle is null)
             {
                 vehicle = new Vehicle
                 {
-                    LicensePlate = request.LicensePlate
+                    LicensePlate = licensePlate
                 };
 
                 await _unitOfWork.Vehicles.AddAsync(vehicle, cancellationToken);
@@ -64,7 +66,7 @@ namespace ParkingManagementSystem.Application.Features.ParkingEntries.Commands.C
                 Status = ParkingEntryStatus.Inside,
                 PaymentStatus = PaymentStatus.Pending,
                 Vehicle = vehicle,
-                RateTypeId = rateType!.Id,
+                RateTypeId = rateType.Id,
                 ParkingSpaceId = parkingSpace.Id
             };
 

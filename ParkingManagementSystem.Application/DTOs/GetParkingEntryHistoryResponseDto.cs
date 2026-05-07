@@ -9,7 +9,7 @@
         public string RateTypeName { get; set; } = null!;
         public DateTime EntryTime { get; set; }
         public DateTime? ExitTime { get; set; }
-        public decimal TotalAmount { get; set; }
+        public decimal? TotalAmount { get; set; }
         public string PaymentStatus { get; set; } = null!;
         public string Status { get; set; } = null!;
     }

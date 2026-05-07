@@ -44,8 +44,8 @@ namespace ParkingManagementSystem.Application.Features.ParkingEntries.Queries.Ge
                 EntryTime = pe.EntryTime,
                 ExitTime = pe.ExitTime,
                 TotalAmount = pe.TotalAmount ?? 0,
-                PaymentStatus = pe.PaymentStatus == PaymentStatus.Paid ? "Pagado" : "Pendiente",
-                Status = pe.Status == ParkingEntryStatus.Completed ? "Completado" : pe.Status.ToString()
+                PaymentStatus = pe.PaymentStatus.ToString(),
+                Status = pe.Status.ToString()
             }).ToList();
 
             return MessageResult<List<GetParkingEntryHistoryResponseDto>>.Of("Historial consultado correctamente.", response);
