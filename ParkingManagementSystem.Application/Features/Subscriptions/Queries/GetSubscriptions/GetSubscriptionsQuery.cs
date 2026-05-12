@@ -32,7 +32,7 @@ namespace ParkingManagementSystem.Application.Features.Subscriptions.Queries.Get
                 LicensePlate = s.Vehicle.LicensePlate,
                 RateTypeName = s.RateType.Name,
                 SpaceNumber = s.ParkingSpace.SpaceNumber,
-                Status = s.Status == SubscriptionStatus.Active ? "Activo" : "Vencido",
+                Status = s.Status.ToString(),
                 StartDate = s.StartDate,
                 EndDate = s.EndDate,
                 //IsExpired = s.EndDate < DateTime.Now

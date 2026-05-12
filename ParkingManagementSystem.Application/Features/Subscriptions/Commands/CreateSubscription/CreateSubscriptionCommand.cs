@@ -27,6 +27,8 @@ namespace ParkingManagementSystem.Application.Features.Subscriptions.Commands.Cr
         }
         public async Task<MessageResult<int>> Handle(CreateSubscriptionCommand request, CancellationToken cancellationToken)
         {
+            var licensePlate = request.LicensePlate.Trim().ToUpper();
+
             var rateType = await _unitOfWork.RateTypes
                 .GetByIdAsync(request.RateTypeId, cancellationToken);
 
@@ -46,20 +48,20 @@ namespace ParkingManagementSystem.Application.Features.Subscriptions.Commands.Cr
                 ServiceStatus.BadRequest.Throw("El espacio ya está asignado a un abonado.");
 
             var vehicle = await _unitOfWork.Vehicles
-                .GetByLicensePlateAsync(request.LicensePlate, cancellationToken);
+                .GetByLicensePlateAsync(licensePlate, cancellationToken);
 
             if (vehicle is null)
             {
                 vehicle = new Vehicle
                 {
-                    LicensePlate = request.LicensePlate
+                    LicensePlate = licensePlate
                 };
 
                 await _unitOfWork.Vehicles.AddAsync(vehicle, cancellationToken);
             }
 
             var vehicleAlreadyAssigned = await _unitOfWork.Subscriptions
-                .ExistsByLicensePlateAsync(request.LicensePlate, cancellationToken);
+                .ExistsByLicensePlateAsync(licensePlate, cancellationToken);
 
             if (vehicleAlreadyAssigned)
                 ServiceStatus.BadRequest.Throw("El vehículo ya tiene una suscripción registrada.");

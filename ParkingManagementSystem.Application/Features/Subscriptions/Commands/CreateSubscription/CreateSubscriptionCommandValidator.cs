@@ -16,7 +16,9 @@ namespace ParkingManagementSystem.Application.Features.Subscriptions.Commands.Cr
 
             RuleFor(x => x.LicensePlate)
                 .NotEmpty().WithMessage("El número de placa es requerido.")
-                .MaximumLength(7).WithMessage("El número de placa no puede exceder los 7 caracteres.");
+                .MaximumLength(7).WithMessage("El número de placa no puede exceder los 7 caracteres.")
+                .Matches("^[A-Z0-9]{3}-\\d{3}$")
+                .WithMessage("El número de placa debe tener un formato válido. Ejemplo: A1S-959 o ABC-123.");
 
             RuleFor(x => x.RateTypeId)
                 .GreaterThan(0).WithMessage("La tarifa debe ser mayor a 0.");

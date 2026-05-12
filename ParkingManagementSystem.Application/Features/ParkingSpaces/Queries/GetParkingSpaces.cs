@@ -33,13 +33,7 @@ namespace ParkingManagementSystem.Application.Features.ParkingSpaces.Queries
                 {
                     Id = ps.Id,
                     SpaceNumber = ps.SpaceNumber,
-                    Status = ps.Status switch
-                    {
-                        ParkingSpaceStatus.Available => "Disponible",
-                        ParkingSpaceStatus.Occupied => "Ocupado",
-                        ParkingSpaceStatus.Reserved => "Reservado",
-                        _ => ps.Status.ToString()
-                    },
+                    Status = ps.Status.ToString(),
                     LicensePlate = ps.Status == ParkingSpaceStatus.Occupied
                         ? activeEntry?.Vehicle.LicensePlate
                         : ps.Status == ParkingSpaceStatus.Reserved
