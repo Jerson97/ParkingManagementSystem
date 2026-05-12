@@ -1,19 +1,20 @@
 ﻿using MediatR;
 using ParkingManagementSystem.Application.Common.Extensions;
 using ParkingManagementSystem.Application.Common.Results;
+using ParkingManagementSystem.Application.DTOs;
 using ParkingManagementSystem.Application.Interfaces.Repositories;
 using ParkingManagementSystem.Domain.Entities;
 using ParkingManagementSystem.Domain.Enums;
 
 namespace ParkingManagementSystem.Application.Features.ParkingEntries.Commands.CreateParkingEntry
 {
-    public class CreateParkingEntryCommand : IRequest<MessageResult<int>>
+    public class CreateParkingEntryCommand : IRequest<MessageResult<CreateParkingEntryResponseDto>>
     {
         public string LicensePlate { get; set; } = null!;
         public int RateTypeId { get; set; }
     }
 
-    public class CreateParkingEntryCommandHandler : IRequestHandler<CreateParkingEntryCommand, MessageResult<int>>
+    public class CreateParkingEntryCommandHandler : IRequestHandler<CreateParkingEntryCommand, MessageResult<CreateParkingEntryResponseDto>>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -22,7 +23,7 @@ namespace ParkingManagementSystem.Application.Features.ParkingEntries.Commands.C
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<MessageResult<int>> Handle(CreateParkingEntryCommand request, CancellationToken cancellationToken)
+        public async Task<MessageResult<CreateParkingEntryResponseDto>> Handle(CreateParkingEntryCommand request, CancellationToken cancellationToken)
         {
             var licensePlate = request.LicensePlate.Trim().ToUpper();
 
@@ -77,7 +78,21 @@ namespace ParkingManagementSystem.Application.Features.ParkingEntries.Commands.C
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return MessageResult<int>.Of("Ingreso registrado correctamente.", parkingEntry.Id);
+            var response = new CreateParkingEntryResponseDto
+            {
+                ParkingEntryId = parkingEntry.Id,
+                TicketNumber = parkingEntry.TicketNumber,
+                LicensePlate = licensePlate,
+                RateTypeName = rateType.Name,
+                EntryTime = parkingEntry.EntryTime,
+                SpaceNumber = parkingSpace.SpaceNumber,
+                RateTypePrice = rateType.Price,
+                IsHourly = rateType.IsHourly,
+                PaymentStatus = parkingEntry.PaymentStatus.ToString(),
+                Status = parkingEntry.Status.ToString()
+            };
+
+            return MessageResult<CreateParkingEntryResponseDto>.Of("Ingreso registrado correctamente.",response);
         }
     }
 }

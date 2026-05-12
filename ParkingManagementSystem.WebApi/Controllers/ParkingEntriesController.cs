@@ -15,7 +15,7 @@ namespace ParkingManagementSystem.WebApi.Controllers
     public class ParkingEntriesController : MyBaseController
     {
         [HttpPost]
-        public async Task<ActionResult<MessageResult<int>>> Create([FromBody] CreateParkingEntryCommand command)
+        public async Task<ActionResult<MessageResult<CreateParkingEntryResponseDto>>> Create([FromBody] CreateParkingEntryCommand command)
         {
             var result = await Mediator.Send(command);
             return Ok(result);
