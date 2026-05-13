@@ -1,45 +1,116 @@
 # 🚗 Parking Management System
 
-Sistema backend desarrollado para la gestión de una cochera, enfocado en el control de ingresos de vehículos, manejo de abonados y cálculo de tarifas según el tipo de servicio.
+API REST desarrollada en **.NET 8** para la gestión operativa de una cochera.  
+Permite administrar ingresos y salidas de vehículos, tickets, espacios, tarifas, abonados, autenticación y roles.
 
-El objetivo del proyecto fue implementar una solución estructurada que permita registrar operaciones diarias de manera ordenada, manteniendo trazabilidad de cada ingreso (ticket) y control sobre los espacios disponibles.
+Este proyecto forma parte de un sistema completo compuesto por:
+
+- **Backend:** ParkingManagementSystem
+- **Frontend:** ParkingManagementSystemWeb
 
 ## 🧩 Tecnologías utilizadas
 
-* .NET
-* Entity Framework Core
-* SQL Server
-* Clean Architecture
+- .NET 8
+- ASP.NET Core Web API
+- Entity Framework Core
+- SQL Server
+- MediatR
+- FluentValidation
+- JWT Authentication
+- BCrypt
+- Swagger / OpenAPI
+- CORS
 
 ## ⚙️ Funcionalidades principales
 
-* Registro de vehículos
-* Generación de tickets al momento de ingreso
-* Control de espacios de estacionamiento
-* Gestión de tarifas (diario, semanal, mensual)
-* Manejo de abonados con espacio asignado
-* Cálculo de montos al momento de salida
-* Control de estados (ingreso, salida, pago)
+- Autenticación con JWT.
+- Roles de usuario: `Admin` y `Attendant`.
+- Dashboard con resumen operativo.
+- Registro de ingreso de vehículos.
+- Generación de ticket de ingreso.
+- Cálculo de monto estimado.
+- Registro de salida de vehículos.
+- Historial de tickets cerrados.
+- Gestión de espacios de cochera.
+- Gestión de tarifas.
+- Gestión de abonados/suscripciones.
 
 ## 🧠 Enfoque técnico
 
 El sistema fue estructurado utilizando Clean Architecture, separando responsabilidades en distintas capas:
 
-* **Domain**: entidades y reglas principales del negocio
-* **Application**: lógica de aplicación y casos de uso
-* **Infrastructure**: acceso a datos con Entity Framework Core
-* **WebApi**: exposición de endpoints
+ParkingManagementSystem.Domain
+ParkingManagementSystem.Application
+ParkingManagementSystem.Infrastructure
+ParkingManagementSystem.WebApi
 
-Se utilizó Fluent API para la configuración de entidades y relaciones, evitando dependencias en atributos y permitiendo mayor control sobre la base de datos.
+##
+Además, se aplican patrones como:
 
-Además, se implementó el uso de enums para el manejo de estados, almacenándolos como texto en la base de datos para mejorar la legibilidad y mantenimiento.
+CQRS
+Mediator Pattern
+Repository Pattern
+Unit of Work
+DTOs
+Middleware global de errores
+Respuestas estandarizadas con MessageResult<T>
 
-## 📌 Consideraciones
 
-El sistema está diseñado para manejar tanto clientes ocasionales como abonados, permitiendo asignación de espacios fijos y control de disponibilidad en tiempo real.
 
-Actualmente el proyecto se encuentra en evolución, con mejoras planificadas en validaciones, lógica de negocio y ampliación de funcionalidades.
+👤 Roles del sistema
+Admin:
+Usuario administrativo con acceso a funcionalidades como:
 
----
+Gestión de tarifas.
+Cancelación de abonados.
+Procesamiento de suscripciones vencidas.
+Operaciones generales del sistema.
 
-Proyecto desarrollado como solución backend orientada a escenarios reales de gestión de cocheras.
+Attendant:
+Usuario operativo encargado de la atención diaria de la cochera.
+
+Puede realizar acciones como:
+
+Registrar ingreso de vehículos.
+Consultar monto estimado.
+Registrar salida.
+Buscar tickets.
+Consultar historial.
+Crear y renovar abonados.
+Consultar espacios y tarifas.
+
+📦 Módulos principales
+
+## Parking Entries
+Módulo encargado del flujo operativo de vehículos:
+
+Registrar ingreso.
+Generar ticket.
+Consultar monto estimado.
+Registrar salida.
+Buscar ticket.
+Consultar historial.
+
+## Parking Spaces
+Permite consultar el estado de los espacios:
+
+Disponible.
+Ocupado.
+Reservado.
+
+## Rate Types
+Permite administrar tarifas:
+
+Crear tarifa.
+Editar tarifa.
+Desactivar tarifa.
+Listar tarifas activas.
+
+## Subscriptions
+Permite gestionar abonados:
+
+Crear abonado.
+Renovar suscripción.
+Cancelar abonado.
+Procesar suscripciones vencidas.
+Liberar espacios asociados.
